@@ -1,0 +1,65 @@
+#Initial Setup & Install dependencies:
+-npm init -y
+-npm i dotenv mongoose jsonwebtoken express nodemon crypto-js body-parser
+-npm install firebase-admin
+- Note - body-parser is used for sending post requests, cors is used for cross-origin request, mongoose is used for creating models, nodemon is to resend the server incase of any change.
+- Next - add the fflg code to the backend package.json file - 
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+-npm start
+
+
+
+//RM8YPg4rg6F3qD3t
+
+//Patterns:
+1. Create Server
+2. create Models (user model, etc)
+3. create Controllers (authControllers, userController, vendorController etc)
+4. create Routes (register, login etc)
+5. create middleware (optional)
+6. Put Routes into server
+7. Test API Endpoints in Postman 
+
+##4 Folders to have in Mern stack BAckend Projects - 
+A. Server.js File - 
+B. Models Folder - In the backend models folder of your MERN stack application, you typically define the data models that represent the structure of your application's data. These models are essentially blueprints that define the properties and behaviors of different types of data objects used in your application. 
+    In a MERN stack, MongoDB is often used as the database. In this case, your models folder would likely contain JavaScript files defining MongoDB schemas using a library like Mongoose. These schemas define the STRUCTURE of your MongoDB documents, including fields, data types, validation rules, and any default values or methods associated with the data.
+    Overall, the backend models folder plays a crucial role in organizing and defining the structure and behavior of your application's data, making it easier to manage and maintain your codebase
+C. Controllers Folder - In a MERN (MongoDB, Express.js, React.js, Node.js) stack application, the backend controllers folder typically contains the logic responsible for handling incoming HTTP requests, processing data, interacting with the database, and sending back appropriate responses. 
+    Route Handlers: Each controller file often corresponds to a specific set of routes or endpoints in your application. These files contain functions (often referred to as route handlers or controller methods) that handle requests to these endpoints.
+    Request Processing Logic: Within each controller method, you'll find logic for processing incoming requests. This may involve extracting data from the request (e.g., request parameters, query strings, request body), performing any necessary validation or sanitization, and preparing the data for further processing.
+    Interaction with Models: Controllers typically interact with the backend models to perform database operations such as reading or writing data. This interaction may involve using ORM (Object-Relational Mapping) libraries like Mongoose (for MongoDB) to create, read, update, or delete data.
+    Response Handling: After processing the request and interacting with the models as needed, controllers are responsible for constructing an appropriate HTTP response. This includes setting the status code, headers, and body of the response based on the outcome of the request.
+    Error Handling: Controllers handle errors that may occur during request processing. This includes catching exceptions, logging errors for debugging purposes, and sending appropriate error responses back to the client.
+    Overall, the backend controllers folder serves as the bridge between the incoming HTTP requests and the backend models, encapsulating the application logic needed to fulfill those requests and manage data flow within the server-side of your MERN stack application.
+
+D. Routes - In a MERN stack application, the backend routes folder typically contains the definitions of API endpoints and the routing logic to handle incoming HTTP requests. This folder organizes the endpoints or routes that your backend server exposes to handle various client requests. Here's what you might typically find in a backend routes folder:
+    API Routes: This folder may contain files that define routes for different API endpoints. These routes handle HTTP requests (GET, POST, PUT, DELETE, etc.) from the client-side and interact with your application's backend logic, such as fetching data from a database, processing forms, etc.
+    Route Handlers: Each file within the "route" folder often corresponds to a particular set of related routes or functionalities. For example, you might have separate files for user authentication routes, user profile routes, data manipulation routes, etc. These files typically contain route handlers, which are functions that get executed when a particular route is accessed.
+    Middleware: Middleware functions may also be included in the route folder. Middleware functions can intercept and preprocess incoming requests before they reach the route handlers. Common use cases for middleware include authentication, logging, error handling, and data validation.
+    Route Configuration: In some cases, you might find a configuration file that centralizes route definitions or specifies common settings for routes, such as base paths or middleware to be applied to all routes.
+    Error Handling: Error handling logic might also be included within the route files or in separate error handling middleware. This ensures that appropriate responses are sent back to the client in case of errors or exceptions during request processing.
+    Overall, the "route" folder is crucial for defining the server-side logic that handles incoming requests and serves appropriate responses in a MERN stack application.
+
+E. In a MERN stack application, the "middleware" folder typically contains middleware functions that intercept and process incoming HTTP requests before they are passed on to the route handlers or other processing logic. Middleware functions can perform tasks such as authentication, authorization, data validation, logging, error handling, and more.
+    Here's a breakdown of what you might find in a typical "middleware" folder:
+
+    Authentication Middleware: Middleware functions responsible for authenticating incoming requests. This could involve verifying user sessions, checking tokens, or validating user credentials against a database.
+    Authorization Middleware: Middleware functions that enforce access control policies to determine whether a user is allowed to access certain resources or perform specific actions. This often involves checking the user's role, permissions, or ownership of resources.
+    Validation Middleware: Middleware functions that validate incoming request data to ensure it meets certain criteria or conforms to a specified format. This could include checking the presence of required fields, validating data types, sanitizing inputs, etc.
+    Error Handling Middleware: Middleware functions that handle errors or exceptions that occur during request processing. This could involve logging the error, formatting error responses, and sending appropriate error codes back to the client.
+    Logging Middleware: Middleware functions responsible for logging information about incoming requests, such as request method, URL, headers, and parameters. Logging middleware can help in debugging and monitoring the application's behavior.
+    CORS Middleware: Middleware functions that handle Cross-Origin Resource Sharing (CORS) to control access to resources from different origins. This is especially important in web applications where the client and server may be hosted on different domains.
+    Custom Middleware: Other custom middleware functions tailored to the specific needs of your application, such as rate limiting, caching, compression, etc.
+    Overall, the "middleware" folder plays a crucial role in enhancing the functionality, security, and reliability of your MERN stack application by providing a modular and reusable way to handle common tasks related to request processing.
+
+
+
+
+
+note- In Authentication(LOGIN, LOGOUT, REGISTER) doesnt require a middleware
+note - when it comes to Authorizing users endpoints(Edit, Update,Delete user, fetchUserProfile -crud operations), we will need a middleware.
+

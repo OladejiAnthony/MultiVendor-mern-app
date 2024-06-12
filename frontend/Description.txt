@@ -1,0 +1,17 @@
+
+#Google Map console - https://console.cloud.google.com
+#Click Api&Services, then Map Categories
+apikey - AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08
+
+#emojipedia.org - emojipedia
+
+#Backend -
+1.Postman - Api
+2.Atlas Mongo db - database
+3.Firebase Admin - Authentication
+
+My Laptop IP Address - replace localhost with "192.168.0.5"
+axios.post("http://192.168.0.5:8000/register", user)
+
+
+
