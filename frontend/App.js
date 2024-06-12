@@ -24,8 +24,8 @@ import { CartCountContext } from "./app/context/CartCountContext";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [address, setAddress] = useState(null); console.log({address})
   const [location, setLocation] = useState(null); //console.log(location)
-  const [address, setAddress] = useState(null); //console.log(address)
   const [errorMsg, setErrorMsg] = useState("");
   const [restaurantObj, setRestaurantObj] = useState(null);
   const [login, setLogin] = useState(false);
@@ -75,12 +75,12 @@ export default function App() {
       if (status === "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
-      } //console.log(status)
+      } console.log({status})
       
       //get userLocation
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      //console.log(location)
+      console.log({location})
       loginStatus();
     })();
   }, []);
@@ -98,7 +98,7 @@ export default function App() {
     } else {
       setLogin(false);
     }
-    console.log({login})
+    //console.log({login})
   };
 
 

@@ -1,6 +1,7 @@
 import { Dimensions } from "react-native";
 //Dimensions is a built-in module that provides an interface for getting dimensions of the device's screen
 
+
 const { height, width } = Dimensions.get("window");
 //This line retrieves the height and width of the device's screen
 
