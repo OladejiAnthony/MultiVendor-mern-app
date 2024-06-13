@@ -1,4 +1,3 @@
-
 const categories = [
   {
     _id: "6537ece708ff5b7de97d0695",
@@ -68,11 +67,39 @@ const categories = [
   },
 ];
 
+const choicesList = [
+  {
+    id: 1,
+    name: "Pick Up",
+    value: "pickup",
+  },
+  {
+    id: 2,
+    name: "4 Star",
+    value: "4star",
+  },
+  {
+    id: 3,
+    name: "3 Star",
+    value: "3star",
+  },
+  {
+    id: 4,
+    name: "Under 30 min",
+    value: "under30",
+  },
+  {
+    id: 5,
+    name: "Recommended",
+    value: "recommended",
+  },
+];
+
 const restaurants = [
   {
     _id: "6530ebbcc9e72013e5b65933",
-    title: "Lapisara Eatery",
-    time: "15 min",
+    title: "Kilimanjaro, Post Office",
+    time: "30 min",
     imageUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     owner: "fdfsdfsdfs",
@@ -83,18 +110,29 @@ const restaurants = [
     ratingCount: "6765",
     coords: {
       id: "2023",
-      latitude: 37.78792117665919,
-      longitude: -122.41325651079953,
-      address: "698 Post St, San Francisco, CA 94109, United States",
-      title: "Lapisara Eatery",
-      latitudeDelta: 0.0122,
-      longitudeDelta: 0.0221,
+      latitude: 8.483333,
+      longitude: 4.55,
+      address: "Kilimanjaro Post Office, Ibrahim Taiwo Rd, Ilorin, Nigeria",
+      title: "Kilimanjaro Post Office",
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
     },
+
+    // coords: {
+    //   id: "2023",
+    //   latitude: 37.78792117665919,
+    //   longitude: -122.41325651079953,
+    //   address: "698 Post St, San Francisco, CA 94109, United States",
+    //   title: "Lapisara Eatery",
+    //   latitudeDelta: 0.0122,
+    //   longitudeDelta: 0.0221,
+    // },
   },
   {
     _id: "6530ea6bc9e72013e5b6592d",
-    title: "Burger King",
-    time: "30 min",
+    //title: "Burger King",
+    title: "Chicken Republic, Taiwo",
+    time: "15 min",
     imageUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     owner: "sjgdsjgfjshhjs",
@@ -105,18 +143,18 @@ const restaurants = [
     ratingCount: "3278",
     coords: {
       id: "2020",
-      latitude: 37.785925590588505,
-      longitude: -122.41007428687641,
-      address: "333 O'Farrell St, San Francisco, CA 94102, United States",
-      title: "Burger King",
-      latitudeDelta: 0.0122,
-      longitudeDelta: 0.0221,
+      latitude: 8.4822657,
+      longitude: 4.5481472,
+      address: "Ibrahim Taiwo Road, Ilorin, Nigeria",
+      title: "Chicken Republic",
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
     },
   },
   {
     _id: "6530eb66c9e72013e5b65931",
-    title: "La Foods",
-    time: "25 min",
+    title: "Captain Cook Unity, Ilorin",
+    time: "23 min",
     imageUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     owner: "fgdgdfgd",
@@ -127,12 +165,12 @@ const restaurants = [
     ratingCount: "5666",
     coords: {
       id: "2022",
-      latitude: 37.787503258917035,
-      longitude: -122.39854938269353,
-      address: "333 O'Farrell St, San Francisco, CA 94102, United States",
-      title: "La Foods",
-      latitudeDelta: 0.0122,
-      longitudeDelta: 0.0221,
+      latitude: 8.501389,
+      longitude: 4.541111,
+      address: "Captain Cook Unity, Unity Rd, Ilorin, Nigeria",
+      title: "Captain Cook Unity",
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
     },
   },
   {
@@ -470,31 +508,5 @@ const profile = {
   updatedAt: "2023-10-24T11:02:28.215Z",
 };
 
-const choicesList = [
-  {
-    id: 1,
-    name: "Pick Up",
-    value: "pickup"
-  },
-  {
-    id: 2,
-    name: "4 Star",
-    value: "4star"
-  },
-  {
-    id: 3,
-    name: "3 Star",
-    value: "3star"
-  },
-  {
-    id: 4,
-    name: "Under 30 min",
-    value: "under30"
-  },
-  {
-    id: 5,
-    name: "Recommended",
-    value: "recommended"
-  },
-]
+
 export default { categories, restaurants, foods, cart, profile, choicesList };

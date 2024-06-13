@@ -77,3 +77,5 @@ const ChoicesList = ({ setSelectedChoice, setSelectedSection }) => {
 export default ChoicesList;
 
 const styles = StyleSheet.create({});
+
+

@@ -24,15 +24,16 @@ import { CartCountContext } from "./app/context/CartCountContext";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [address, setAddress] = useState(null); console.log({address})
+  const [address, setAddress] = useState(null);
+  //console.log({ address });
   const [location, setLocation] = useState(null); //console.log(location)
   const [errorMsg, setErrorMsg] = useState("");
   const [restaurantObj, setRestaurantObj] = useState(null);
   const [login, setLogin] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
-  
-  const defaultAddresss = {
+
+  const defaultAddress = {
     city: "Shanghai",
     country: "China",
     district: "Pudong",
@@ -45,7 +46,6 @@ export default function App() {
     subregion: "San Francisco County",
     timezone: "America/Los_Angeles",
   };
-
 
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -63,24 +63,25 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
+  
 
-
- 
   //get current location
   useEffect(() => {
     (async () => {
-      setAddress(defaultAddresss);
+      setAddress(defaultAddress);
       //get permission from user
       let status = await Location.requestForegroundPermissionsAsync();
       if (status === "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
-      } console.log({status})
-      
+      }
+      //console.log({ status });
+
       //get userLocation
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      console.log({location})
+      //console.log({ location });
+      //console.log("loc coords:", location.coords.latitude)
       loginStatus();
     })();
   }, []);
@@ -93,14 +94,14 @@ export default function App() {
 
   const loginStatus = async () => {
     const userToken = await AsyncStorage.getItem("token");
+    //console.log({userToken})
     if (userToken !== null) {
       setLogin(true);
     } else {
       setLogin(false);
     }
-    //console.log({login})
+    //console.log({ login });
   };
-
 
   return (
     <UserLocationContext.Provider value={{ location, setLocation }}>
@@ -164,5 +165,3 @@ export default function App() {
 
 */
 }
-
-

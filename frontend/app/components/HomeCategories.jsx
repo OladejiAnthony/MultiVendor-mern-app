@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const HomeCategories = () => {
-  //console.log(uidata.foods);
+  console.log(uidata.foods);
   const navigation  = useNavigation();
 
   const renderCategoryItem = ({item}) => (

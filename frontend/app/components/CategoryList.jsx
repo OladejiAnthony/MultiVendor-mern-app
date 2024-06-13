@@ -18,7 +18,10 @@ const CategoryList = ({
   
   const categories = [1, 2, 3, 4, 5];
   
+  //GET Request for categories Endpoint
   //console.log(uidata.categories);
+
+
   const handleSelectedCategory = (item) => {
     if (selected == item.value) {
       setSelectedCategory(null);

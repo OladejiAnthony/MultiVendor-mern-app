@@ -24,11 +24,14 @@ const HomeHeader = () => {
     const reverseGeoCodedAddress = await Location.reverseGeocodeAsync({
       longitude: longitude,
       latitude: latitude,
-    });
-    //console.log(reverseGeoCodedAddress)
+    }); //console.log({reverseGeoCodedAddress})
+    //set address function
     //setAddress(reverseGeoCodedAddress)
     setAddress(reverseGeoCodedAddress[0]);
+    //console.log({ address });
+    //set time function
     const greeting = getTimeOfTheDay();
+    //console.log(greeting)
     setTime(greeting);
   };
 
@@ -59,8 +62,9 @@ const HomeHeader = () => {
 
         <View style={styles.headerStyle}>
           <Text style={styles.heading}>Delivering to</Text>
-          <Text style={styles.location}>{`${address?.city} ${address?.name}
-`}</Text>
+          <Text
+            style={styles.location}
+          >{`${address?.city} ${address?.street}`}</Text>
         </View>
       </View>
       <View>
