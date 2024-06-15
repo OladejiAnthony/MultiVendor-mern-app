@@ -8,9 +8,9 @@ import * as Location from "expo-location";
 
 const HomeHeader = () => {
   const { address, setAddress } = React.useContext(UserReversedGeoCode);
-  //console.log(address);
+  //console.log({address}); //My Address
   const { location, setLocation } = React.useContext(UserLocationContext);
-  //console.log(location)
+  //console.log({location}) //My Location coords
   const [time, setTime] = useState(null);
 
   //get users current location

@@ -5,7 +5,8 @@ import NetworkImage from './reusable/NetworkImage'
 import {RatingInput} from "react-native-stock-star-rating" 
 
 const StoreComp = ({item, onPress}) => {
-  //console.log(item)
+  //console.log({item})
+
   return (
     <TouchableOpacity style={styles.wrapper} onPress={onPress}>
       <NetworkImage  

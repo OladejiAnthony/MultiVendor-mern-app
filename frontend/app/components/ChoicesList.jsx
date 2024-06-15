@@ -13,6 +13,7 @@ const ChoicesList = ({ setSelectedChoice, setSelectedSection }) => {
   const [selected, setSelected] = useState(null);
 
   //console.log(uidata.choicesList);
+  
   const handlePress = (item) => {
     if (selected == item.value) {
       setSelected(null);

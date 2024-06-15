@@ -106,7 +106,7 @@ const restaurants = [
     code: "41007428",
     logoUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
-    rating: 5,
+    rating: 4,
     ratingCount: "6765",
     coords: {
       id: "2023",
@@ -161,7 +161,7 @@ const restaurants = [
     code: "41007428",
     logoUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
-    rating: 5,
+    rating: 3.9,
     ratingCount: "5666",
     coords: {
       id: "2022",
@@ -183,7 +183,7 @@ const restaurants = [
     code: "41007428",
     logoUrl:
       "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
-    rating: 5,
+    rating: 3.9,
     ratingCount: "3278",
     coords: {
       id: "2021",
@@ -206,7 +206,7 @@ const foods = [
     code: "41007428",
     isAvailable: true,
     restaurant: "6530ea6bc9e72013e5b6592d",
-    rating: 4.9,
+    rating: 3.9,
     ratingCount: "420",
     description:
       "A classic Italian dessert made of layers of coffee-soaked ladyfingers and creamy mascarpone, topped with cocoa.",
@@ -300,7 +300,7 @@ const foods = [
     code: "41007428",
     isAvailable: true,
     restaurant: "6530ea6bc9e72013e5b6592d",
-    rating: 4.6,
+    rating: 2.6,
     ratingCount: "230",
     description:
       "A refreshing mix of organic vegetables, nuts, seeds, and a tangy vinaigrette.",

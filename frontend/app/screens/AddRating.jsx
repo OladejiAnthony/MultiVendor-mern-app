@@ -14,6 +14,8 @@ import ReusableHeader from "../components/ReusableHeader";
 
 const AddRating = () => {
   const [rating, setRating] = useState(0);
+  //console.log(rating)
+
   return (
     <SafeAreaView style={{ height: SIZES.height }}>
       <Image

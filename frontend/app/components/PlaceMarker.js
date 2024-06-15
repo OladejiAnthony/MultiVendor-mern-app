@@ -3,7 +3,7 @@ import React from "react";
 import { Marker } from "react-native-maps";
 
 const PlaceMarker = ({ coordinates }) => {
-  console.log(coordinates);
+  console.log({coordinates}); //Restaurants Address
 
   return (
     <Marker
@@ -19,3 +19,4 @@ const PlaceMarker = ({ coordinates }) => {
 };
 
 export default PlaceMarker;
+

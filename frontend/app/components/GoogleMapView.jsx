@@ -1,18 +1,30 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+// GoogleMapView.js
+import { StyleSheet, View } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { UserLocationContext } from "../context/UserLocationContext";
 import { COLORS, SIZES } from "../constants/theme";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
-import GoogleApiServices from "../hook/GoogleApiServices";
+import { fetchDirections } from "../hook/DirectionGoogleAPI";
 import PlaceMarker from "./PlaceMarker";
 
 const GoogleMapView = ({ placeList }) => {
-  //console.log(placeList[0]);
-  const [directions, setDirections] = useState([]);
+  console.log({ placeList }); // Restaurant address
+  const { location } = useContext(UserLocationContext); // My Location coords
   const [coordinates, setCoordinates] = useState([]);
-  const { location, setLocation } = useContext(UserLocationContext);
-  //console.log(location);
+  console.log({ coordinates });
 
+  // To Zoom Map
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    if (!location || !placeList) return;
+    // Zoom & fit to markers
+    mapRef.current.fitToSuppliedMarkers(["location", "placeList"], {
+      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+    });
+  }, [location, placeList]);
+
+  // Initial states
   const [mapRegion, setMapRegion] = useState({
     latitude: 35.6855,
     longitude: 139.68884,
@@ -23,82 +35,29 @@ const GoogleMapView = ({ placeList }) => {
   useEffect(() => {
     if (location) {
       setMapRegion({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.0005,
-        longitudeDelta: 0.0005,
+        latitude: location.coords.latitude, // My Location Latitude
+        longitude: location.coords.longitude, // My Location Longitude
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
       });
+      // Destructure Restaurant's placeList variable
+      const { latitude, longitude } = placeList[0];
       fetchDirections(
-        placeList[0].latitude,
-        placeList[0].longitude,
-        location.coords.latitude,
-        location.coords.longitude
-      );
+        location.coords.latitude, // My Location Latitude
+        location.coords.longitude, // My Location Longitude
+        latitude, // Restaurant Address Latitude
+        longitude // Restaurant Address Longitude
+      )
+        .then(setCoordinates)
+        .catch((error) => console.error("Failed to fetch directions:", error));
     }
-  }, [location, coordinates]);
-
-  const apiKey = GoogleApiServices.apiKey;
-
-  //fetch direction
-  const fetchDirections = async (
-    startLat,
-    startLng,
-    destinationLat,
-    destinationLng
-  ) => {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLat},${startLng}&destination=${destinationLat},${destinationLng}&key=${apiKey}`;
-      const response = await fetch(url);
-      const data = await response.json().then((data) => {
-        setDirections(data);
-        const encodedPolyline = data.routes[0].overview_polyline.points;
-        const coordinates = decode(encodedPolyline);
-
-        setCoordinates(coordinates);
-      });
-    } catch (error) {
-      //console.error(error);
-    }
-  };
-
-  const decode = (encoded) => {
-    const points = [];
-    let index = 0,
-      len = encoded.length;
-    let lat = 0,
-      lng = 0;
-
-    while (index < len) {
-      let shift = 0,
-        result = 0;
-      let byte;
-      do {
-        byte = encoded.charCodeAt(index++) - 63; // <-- we use charCodeAt method, not a 'char' property
-        result |= (byte & 0x1f) << shift;
-        shift += 5;
-      } while (byte >= 0x20);
-      const deltaLat = result & 1 ? ~(result >> 1) : result >> 1;
-      lat += deltaLat;
-
-      shift = 0;
-      result = 0;
-      do {
-        byte = encoded.charCodeAt(index++) - 63;
-        result |= (byte & 0x1f) << shift;
-        shift += 5;
-      } while (byte >= 0x20);
-      const deltaLng = result & 1 ? ~(result >> 1) : result >> 1;
-      lng += deltaLng;
-
-      points.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
-    }
-
-    return points;
-  };
+  }, [location, placeList]);
 
   return (
     <View style={styles.mapContainer}>
       <MapView
+        ref={mapRef} // useRef hook To Zoom Map
+        mapType="mutedStandard"
         provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
         region={mapRegion}
@@ -107,13 +66,13 @@ const GoogleMapView = ({ placeList }) => {
         <Marker
           title="My Location"
           coordinate={mapRegion}
-          description={location.description}
-          identifier="Location"
+          description={location?.description}
+          identifier="location"
         />
-        {placeList.map(
-          (item, index) =>
-            index <= 1 && <PlaceMarker key={item.id} coordinates={item} />
-        )}
+        {/* Restaurants Data */}
+        {placeList.map((item) => (
+          <PlaceMarker key={item.id} coordinates={item} />
+        ))}
         <Polyline
           coordinates={coordinates}
           strokeColor={"red"}
@@ -130,8 +89,6 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: SIZES.width - 5,
     height: SIZES.height / 3,
-    //marginVertical: 8,
-    //borderRadius: 12,
     borderColor: COLORS.primary,
     borderWidth: 1,
   },
@@ -140,5 +97,3 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 });
-
-//4hrs 48mins

@@ -1,20 +1,22 @@
-import axios from "axios"
+import axios from "axios";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 
+//console.log({GOOGLE_MAPS_APIKEY})
 
 const calculateDistanceAndTime = async (startLat, startLng, destinationLat, destinationLng, mode = 'bicycling') => {
-    const apiKey = "AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08"; // Replace with your API Key
+    const apiKey = GOOGLE_MAPS_APIKEY; // Ensure API key is a string
     const baseUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?";
     const ratePerKm = 1; 
 
     const requestUrl = `${baseUrl}origins=${startLat},${startLng}&destinations=${destinationLat},${destinationLng}&mode=${mode}&key=${apiKey}`;
 
     try {
-        const response = await fetch(requestUrl);
-        const data = await response.json();
+        const response = await axios.get(requestUrl);
+        const data = response.data;
 
-        //console.log(response)
-        //console.log(data)
-        
+        //console.log({ response });
+        //console.log({ data });
+
         // Ensure the request was successful and there are results
         if (data.status === "OK" && data.rows[0].elements[0].status === "OK") {
             const distance = data.rows[0].elements[0].distance.text;
@@ -22,7 +24,7 @@ const calculateDistanceAndTime = async (startLat, startLng, destinationLat, dest
 
             const distanceInKm = parseFloat(distance.replace(' km', ''));
             const price = distanceInKm * ratePerKm;
-            const finalPrice = `$${price.toFixed(2)}`
+            const finalPrice = `$${price.toFixed(2)}`;
 
             return {
                 distance,
@@ -37,15 +39,21 @@ const calculateDistanceAndTime = async (startLat, startLng, destinationLat, dest
         console.error("Failed to calculate distance and duration:", error);
         return null;
     }
-}
+};
 
-const extractNumbers = (inputStr) =>{
+const extractNumbers = (inputStr) => {
     if (typeof inputStr !== 'string') {
         return [];
     }
     const matched = inputStr.match(/\d+/g);
     return matched ? matched.map(num => parseInt(num, 10)) : [];
-}
+};
+
+export default {
+    calculateDistanceAndTime,
+    extractNumbers
+};
+
 
 
 // const fetchDirections = async (
@@ -104,12 +112,6 @@ const extractNumbers = (inputStr) =>{
 //     return points;
 //   };
 
-
-
-export default {
-    calculateDistanceAndTime,
-    extractNumbers
-}
 
 
 //AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08

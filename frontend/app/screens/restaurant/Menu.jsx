@@ -5,6 +5,7 @@ import { RestaurantContext } from "../../context/RestaurantContext";
 import uidata from "../../constants/uidata";
 import CategoryFoodComp from "../../components/reusable/CategoryFoodComp";
 
+
 const Menu = () => {
   const { restaurantObj, setRestaurantObj } = useContext(RestaurantContext);
   //console.log(restaurantObj)

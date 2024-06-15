@@ -13,10 +13,10 @@ import { COLORS, SIZES } from "../../constants/theme";
 
 const Direction = () => {
   const { restaurantObj, setRestaurantObj } = useContext(RestaurantContext);
-  //console.log(restaurantObj)
-
+  //console.log({restaurantObj}) //Restaurant Address
+  
   const coords = restaurantObj.coords;
-  //console.log(coords)
+  //console.log({coords})
 
   //open a Link outside my app
   const onDirectionClick = () => {

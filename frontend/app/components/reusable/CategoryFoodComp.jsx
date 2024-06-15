@@ -12,6 +12,9 @@ import { RatingInput, Rating } from "react-native-stock-star-rating";
 
 
 const CategoryFoodComp = ({ item, onPress }) => {
+  //console.log({item})
+  //console.log("rating: ", item.rating)
+  
   return (
     <TouchableOpacity style={styles.wrapper} onPress={onPress}>
       <View style={styles.innerRow}>
@@ -57,13 +60,15 @@ const CategoryFoodComp = ({ item, onPress }) => {
             />
 
             <Text style={styles.reviews}>{item.ratingCount} Reviews</Text>
-            <Rating
-              rating={item.rating}
-              color={COLORS.secondary}
-              size={20}
-              maxStars={5}
-              bordered={false}
-            />
+            
+            <RatingInput 
+          rating={item.rating}
+          size={20}
+          maxStars={5}
+          setRating={item.rating}
+          bordered={false}
+          color={COLORS.secondary}
+        />
           </View>
         </View>
       </View>

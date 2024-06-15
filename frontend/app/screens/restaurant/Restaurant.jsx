@@ -16,13 +16,16 @@ import GoogleApiServices from "../../hook/GoogleApiServices";
 import { UserLocationContext } from "../../context/UserLocationContext";
 
 const Restaurant = ({ navigation }) => {
+  //console.log({navigation})
   const [distanceTime, setDistanceTime] = useState({});
   const route = useRoute();
   const item = route.params;
-  //console.log(item); //restaurant parameters
-  const { location, setLocation } = useContext(UserLocationContext);
+  //restaurant parameters
+  //console.log({item}); 
 
-  //console.log(location) //users parameters
+  const { location, setLocation } = useContext(UserLocationContext);
+  //users parameters
+  //console.log({location}) 
   //console.log(location.coords.latitude, location.coords.longitude); //users coordinates
   //console.log(item.coords.latitude, item.coords.longitude); //restaurant coordinations
 
@@ -33,17 +36,18 @@ const Restaurant = ({ navigation }) => {
       location.coords.latitude,
       location.coords.longitude
     ).then((result) => {
+      //console.log({result})
       if (result) {
         setDistanceTime(result);
       }
     });
-    console.log(distanceTime);
+    //console.log({distanceTime});
   }, []);
 
   const totalTime =
     GoogleApiServices.extractNumbers(distanceTime.duration)[0] +
     GoogleApiServices.extractNumbers(item.time);
-  //console.log(totalTime)
+    //console.log({totalTime})
 
   return (
     <View>

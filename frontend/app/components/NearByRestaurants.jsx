@@ -6,9 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 import { RestaurantContext } from "../context/RestaurantContext";
 
 const NearByRestaurants = () => {
-  //console.log(uidata.restaurants)
+  //console.log(uidata.restaurants);
   const navigation = useNavigation();
   const { restaurantObj, setRestaurantObj } = useContext(RestaurantContext);
+  //console.log({restaurantObj})
 
   return (
     <View style={{ marginLeft: 12 }}>
@@ -22,7 +23,8 @@ const NearByRestaurants = () => {
           <StoreComp
             item={item}
             onPress={() => {
-              navigation.navigate("restaurant", item), setRestaurantObj(item);
+              navigation.navigate("restaurant", item),
+              setRestaurantObj(item);
             }}
           />
         )}
